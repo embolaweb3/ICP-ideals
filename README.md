@@ -1,81 +1,32 @@
-# Azle Hello World
 
-- [Installation](#installation)
-- [Deployment](#deployment)
+# PeerRaise Crowdfunding Platform
 
-Azle helps you to build secure decentralized/replicated servers in TypeScript or JavaScript on [ICP](https://internetcomputer.org/). The current replication factor is [13-40 times](https://dashboard.internetcomputer.org/subnets).
+PeerRaise is a decentralized crowdfunding platform built on the Internet Computer (ICP) using Azle 0.27.0 and TypeScript. It allows users to register, create campaigns, contribute to campaigns, and retrieve campaign statistics. The platform is powered by a smart contract that ensures transparency, security, and decentralization.
 
-Azle stable mode is continuously subjected to [intense scrutiny and testing](https://github.com/demergent-labs/azle/actions), however it does not yet have multiple independent security reviews/audits.
+---
 
-## Stable Mode
+## Features
 
-Azle runs in stable mode by default.
+- **User Registration**: Users can register with a unique username.
+- **Campaign Creation**: Registered users can create crowdfunding campaigns with a title, description, and funding goal.
+- **Contribute to Campaigns**: Users can contribute funds to campaigns.
+- **Close Campaigns**: Campaign creators can close their campaigns to prevent further contributions.
+- **Search Campaigns**: Users can search for campaigns by title or description.
+- **Campaign Statistics**: Retrieve statistics for a specific campaign, such as total funds raised and the number of contributors.
 
-This mode is intended for production use after Azle's 1.0 release. Its focus is on API and runtime stability, security, performance, TypeScript and JavaScript language support, the ICP APIs, and Candid remote procedure calls (RPC). There is minimal support for the Node.js standard library, npm ecosystem, and HTTP server functionality.
+---
 
-## Installation
+## Smart Contract Functionality
 
-> Windows is only supported through a Linux virtual environment of some kind, such as [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
+The PeerRaise smart contract provides the following methods:
 
-You will need [Node.js 22](#nodejs-22) and [dfx](#dfx) to develop ICP applications with Azle:
+| Method Name             | Parameters                          | Return Type | Description                              |
+|-------------------------|-------------------------------------|-------------|------------------------------------------|
+| `registerUser`          | `username: string`                 | `boolean`   | Registers a new user.                    |
+| `createCampaign`        | `title: string, description: string, goal: number` | `number` | Creates a new campaign.                  |
+| `contributeToCampaign`  | `campaignId: number, amount: number` | `boolean` | Contributes to a campaign.               |
+| `closeCampaign`         | `campaignId: number`               | `boolean`   | Closes a campaign.                       |
+| `searchCampaigns`       | `query: string`                    | `Campaign[]` | Searches for campaigns by title or description. |
+| `getCampaignStatistics` | `campaignId: number`               | `{ totalRaised: number, totalContributors: number }` | Retrieves campaign statistics. |
 
-### Node.js 22
-
-It's recommended to use nvm to install Node.js 22:
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-```
-
-Restart your terminal and then run:
-
-```bash
-nvm install 22
-```
-
-Check that the installation went smoothly by looking for clean output from the following command:
-
-```bash
-node --version
-```
-
-### dfx
-
-Install the dfx command line tools for managing ICP applications:
-
-```bash
-DFX_VERSION=0.24.3 sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
-```
-
-Check that the installation went smoothly by looking for clean output from the following command:
-
-```bash
-dfx --version
-```
-
-## Deployment
-
-To create and deploy a simple sample application called `hello_world`:
-
-```bash
-# create a new default project called hello_world
-npx azle new hello_world
-cd hello_world
-```
-
-```bash
-# install all npm dependencies including azle
-npm install
-```
-
-```bash
-# start up a local ICP replica
-dfx start --clean
-```
-
-In a separate terminal in the `hello_world` directory:
-
-```bash
-# deploy your canister
-dfx deploy
-```
+---
