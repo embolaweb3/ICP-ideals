@@ -1,177 +1,81 @@
-### **1. 分散型AIチャットボットマーケットプレイス**  
-ユーザーがAIチャットボットを分散型サービスとしてデプロイできるマーケットプレイス。企業は仲介業者を介さずにAI機能をレンタル可能。  
-開発者はAIモデルをトレーニングし、ICP上のキャニスターとしてデプロイすることで、スケーラブルで検閲耐性のある対話を実現。支払いはスマートコントラクトによって処理され、AI開発者に公正な報酬が分配される。
+# Azle Hello World
 
-#### **開発手順:**
-- AIモデル（例: GPT、LLMなど）をトレーニングし、コンテナ化する。
-- AIモデルをICPのキャニスターとしてデプロイする。
-- ユーザーがチャットボットと対話できるフロントエンドを構築する。
-- スマートコントラクトを用いた支払いシステムを実装する。
+- [Installation](#installation)
+- [Deployment](#deployment)
 
-#### **フローチャート構成:**  
-- **ユーザー** → **AIモデルを選択** → **ICPキャニスターにデプロイ** → **クライアントがWeb UIを通じて対話**  
-- **支払いシステム** → **ICP上のスマートコントラクト** → **収益分配**
-  
-![1-img](https://github.com/user-attachments/assets/97c82716-8c41-4add-b014-220130016aa7)
+Azle helps you to build secure decentralized/replicated servers in TypeScript or JavaScript on [ICP](https://internetcomputer.org/). The current replication factor is [13-40 times](https://dashboard.internetcomputer.org/subnets).
 
----
+Azle stable mode is continuously subjected to [intense scrutiny and testing](https://github.com/demergent-labs/azle/actions), however it does not yet have multiple independent security reviews/audits.
 
-### **2. オンチェーン履歴書 & キャリアポートフォリオ**  
-プロフェッショナルが履歴書やプロジェクトをNFTとしてブロックチェーン上に保存し、企業が確認できるシステム。  
-ユーザーは動的にポートフォリオを更新可能。採用企業はサードパーティを介さずにオンチェーンで資格を検証可能。
+## Stable Mode
 
-#### **開発手順:**
-- 履歴書データ用の分散型ストレージシステムを設計する。
-- NFTを活用したキャリア実績の検証機能を実装する。
-- ポートフォリオ表示用のフロントエンドを開発する。
-- 採用担当者がスマートコントラクトを通じてアクセス権を得られる仕組みを構築する。
+Azle runs in stable mode by default.
 
-#### **フローチャート構成:**  
-- **ユーザーが履歴書をアップロード** → **ICPキャニスターに保存** → **NFTトークンをミント**  
-- **企業がアクセスをリクエスト** → **スマートコントラクトがアクセスを認証** → **企業が履歴書を確認**
-  
-![2-img](https://github.com/user-attachments/assets/825b36ed-d8cb-4459-9d50-0fcb8c8f3d97)
+This mode is intended for production use after Azle's 1.0 release. Its focus is on API and runtime stability, security, performance, TypeScript and JavaScript language support, the ICP APIs, and Candid remote procedure calls (RPC). There is minimal support for the Node.js standard library, npm ecosystem, and HTTP server functionality.
 
+## Installation
 
----
+> Windows is only supported through a Linux virtual environment of some kind, such as [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 
-### **3. 分散型クラウドストレージ**  
-Dropboxのような分散型クラウドストレージサービス。  
-ユーザーはICPを利用して安全にファイルを保存でき、中央集権型サーバーに依存せず、プライバシーとセキュリティを確保できる。
+You will need [Node.js 22](#nodejs-22) and [dfx](#dfx) to develop ICP applications with Azle:
 
-#### **開発手順:**
-- ファイルの暗号化および分割（シャーディング）機能を開発する。
-- 冗長性を確保するため、ICPキャニスターにファイルのシャードを保存する。
-- 暗号鍵を用いたアクセス制御を実装する。
-- ファイルのアップロードおよび取得を行うUIを開発する。
+### Node.js 22
 
-#### **フローチャート構成:**  
-- **ユーザーがファイルをアップロード** → **ファイルをチャンクに分割** → **ICPキャニスターに保存**  
-- **ユーザーがファイルを要求** → **チャンクを取得して再構成** → **ユーザーにダウンロード**
+It's recommended to use nvm to install Node.js 22:
 
-![3-img](https://github.com/user-attachments/assets/eee52ec9-a549-4a78-b1b7-94f632b1215e)
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+```
 
----
+Restart your terminal and then run:
 
-### **4. DAOベースの投資クラブ**  
-分散型自律組織（DAO）を活用した投資クラブ。  
-コミュニティメンバーはICPトークンをステークすることで意思決定と収益分配に参加できる。
+```bash
+nvm install 22
+```
 
-#### **開発手順:**
-- スマートコントラクトによるDAOガバナンスフレームワークを実装する。
-- 提案の提出および投票メカニズムを構築する。
-- 透明性のある財務報告システムを開発する。
-- スマートコントラクトを活用した資金分配システムを統合する。
+Check that the installation went smoothly by looking for clean output from the following command:
 
-#### **フローチャート構成:**  
-- **ユーザーがDAOに参加** → **スマートコントラクトがステークを記録** → **提案が提出される**  
-- **投票プロセス** → **多数決で決定** → **資金が割り当てられる**
+```bash
+node --version
+```
 
-![4-img](https://github.com/user-attachments/assets/cc052cf7-ae17-4e45-82b9-8e6174ea3136)
+### dfx
 
----
+Install the dfx command line tools for managing ICP applications:
 
-### **5. Web3ソーシャルメディアプラットフォーム**  
-検閲耐性のあるソーシャルメディアプラットフォーム。  
-投稿やインタラクションがICP上に保存され、ユーザーがコンテンツの所有権を持ち、トークン報酬が分配される。
+```bash
+DFX_VERSION=0.24.3 sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
+```
 
-#### **開発手順:**
-- 分散型コンテンツストレージシステムを設計する。
-- トークンベースのエンゲージメント報酬を実装する。
-- ユーザーフレンドリーなフロントエンドを開発する。
-- DAOガバナンスを通じたモデレーションポリシーを確立する。
+Check that the installation went smoothly by looking for clean output from the following command:
 
-#### **フローチャート構成:**  
-- **ユーザーが投稿を作成** → **データがICPキャニスターに保存** → **フロントエンドに投稿が表示**  
-- **リアクション & コメント** → **スマートコントラクトがエンゲージメント報酬を処理**
+```bash
+dfx --version
+```
 
-![5-img](https://github.com/user-attachments/assets/83c342fc-282e-4a8d-8906-c5ba8a66288d)
----
+## Deployment
 
-### **6. 分散型アイデンティティ & KYCプラットフォーム**  
-ブロックチェーンを活用したアイデンティティ認証システム。  
-ユーザーは検証済みのKYCデータを安全に保存し、第三者がアクセスをリクエストできる。
+To create and deploy a simple sample application called `hello_world`:
 
-#### **開発手順:**
-- ゼロ知識証明（ZKP）を用いたアイデンティティ認証を実装する。
-- KYCデータを暗号化し、ICPキャニスターに保存する。
-- 第三者向けの許可制アクセスシステムを構築する。
-- 生体認証を統合し、セキュリティを強化する。
+```bash
+# create a new default project called hello_world
+npx azle new hello_world
+cd hello_world
+```
 
-#### **フローチャート構成:**  
-- **ユーザーがKYCデータを提出** → **スマートコントラクトがデータを認証** → **アイデンティティトークンを発行**  
-- **第三者がKYCアクセスをリクエスト** → **ユーザーが許可を付与** → **データが安全に共有される**  
+```bash
+# install all npm dependencies including azle
+npm install
+```
 
-![mermaid-diagram-2025-02-09-180409](https://github.com/user-attachments/assets/6a638b01-6542-421a-9cb4-8f5f78fe692f)
+```bash
+# start up a local ICP replica
+dfx start --clean
+```
 
----
+In a separate terminal in the `hello_world` directory:
 
-### **7. 分散型Eラーニング & 認証プラットフォーム**  
-ブロックチェーン上で学習履歴と資格を管理する教育システム。  
-受講者はブロックチェーンベースの認証を取得し、コース登録、進捗管理、証明書の検証が可能。
-
-#### **開発手順:**
-- ICP上にLMS（学習管理システム）を構築する。
-- ブロックチェーンによるコース進捗管理を実装する。
-- コース修了時にNFT証明書を発行する。
-- 企業がスマートコントラクトを通じて証明書を検証できる仕組みを作る。
-
-#### **フローチャート構成:**  
-- **ユーザーがコースに登録** → **レッスンがICPに保存** → **スマートコントラクトが進捗を追跡**  
-- **最終試験** → **NFT証明書を発行** → **企業が証明書を検証**  
-
-![7-img](https://github.com/user-attachments/assets/66528582-9294-455e-9632-43219523f53b)
-
----
-
-### **8. サプライチェーン透明性トラッカー**  
-ブロックチェーンを活用し、商品の移動をリアルタイムで追跡。  
-真正性を保証し、サプライチェーンの不正を防ぐシステム。
-
-#### **開発手順:**
-- サプライチェーンデータを管理する分散型台帳を開発する。
-- IoTデバイスを統合し、リアルタイムで追跡する。
-- ブロックチェーン上で商品の真正性を検証できる仕組みを構築する。
-- 顧客がQRコードを使って製品情報にアクセスできるようにする。
-
-#### **フローチャート構成:**  
-- **製造業者がデータを更新** → **スマートコントラクトが記録を保存** → **輸送業者が移動情報を更新**  
-- **小売業者が商品の真正性を確認** → **顧客がQRコードでチェック**  
-
-![8-img](https://github.com/user-attachments/assets/fd1d7fdf-1f81-4994-8d13-ea4adbc59de2)
----
-
-### **9. Web3クラウドファンディングプラットフォーム**  
-Kickstarterのような分散型資金調達プラットフォーム。  
-支援者は資金の使用状況やマイルストーンの進捗をブロックチェーン上で追跡できる。
-
-#### **開発手順:**
-- クラウドファンディングのスマートコントラクトシステムを開発する。
-- マイルストーンベースの資金リリースメカニズムを実装する。
-- 支援者がプロジェクトの進捗に投票できる仕組みを作る。
-- ブロックチェーン上で透明な資金追跡機能を提供する。
-
-#### **フローチャート構成:**  
-- **クリエイターが資金調達キャンペーンを開始** → **支援者がICPトークンを寄付**  
-- **スマートコントラクトが資金を保持** → **マイルストーン達成時に資金をリリース**
-
-![9-img](https://github.com/user-attachments/assets/eaf35fa4-e503-4cbd-8d40-794eb8da668c)
-
----
-
-### **10. 分散型フリーランスマーケットプレイス**  
-UpworkのWeb3版。  
-フリーランサーとクライアントがスマートコントラクトを通じて取引し、公正で透明な契約を実現。
-
-#### **開発手順:**
-- 分散型の求人リストとマッチングシステムを開発する。
-- スマートコントラクトベースのエスクロー決済を実装する。
-- マイルストーンごとの支払いリリース機能を導入する。
-- ブロックチェーン上のレビューを活用した評判システムを統合する。
-
-#### **フローチャート構成:**  
-- **クライアントが仕事を投稿** → **フリーランサーが提案を提出** → **スマートコントラクトが支払いをエスクロー**  
-- **作業完了** → **支払いリリース** → **ブロックチェーン上で評価更新**
-
-![10-img](https://github.com/user-attachments/assets/7af8cf71-20a2-404e-af73-2a94d08421af)
----
+```bash
+# deploy your canister
+dfx deploy
+```
