@@ -1,3 +1,6 @@
+# Deployed Canister Interface
+
+![UI-canister](https://github.com/user-attachments/assets/b789a590-2fe5-45fa-ab82-c0dabf8e91c7)
 
 # PeerRaise Crowdfunding Platform
 
