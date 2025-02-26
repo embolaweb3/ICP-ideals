@@ -1,0 +1,21 @@
+service : () -> {
+  closeCampaign : (nat) -> (bool);
+  contributeToCampaign : (nat, nat) -> (bool);
+  createCampaign : (text, text, nat) -> (nat);
+  getCampaignStatistics : (nat) -> (
+      record { totalContributors : nat; totalRaised : nat },
+    ) query;
+  registerUser : (text) -> (bool);
+  searchCampaigns : (text) -> (
+      vec record {
+        id : nat;
+        title : text;
+        creator : principal;
+        goal : nat;
+        description : text;
+        isClosed : bool;
+        raised : nat;
+        contributors : vec principal;
+      },
+    ) query;
+}
